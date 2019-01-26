@@ -1,12 +1,16 @@
 #Christophe-André Gassmann [1906846]
+#Ce script s'execute sous python3+ avec la commande [py MTH2303_D1_E2.py] 
+# dans une invite de commande pointée au dossier ou le script est placé.
 
-#Trying to generate all possibilities of odd numbers of <1> up to x
-#knowing we have Results:{<1>,<0>}, for x dices where P[xi=<1>] = ai = 1/(2i+1)
+#On essaie de génerer toutes les possibilitées d'avoir un nombre impaire de <1> dans un bloc de <x> elements <{1,0}>
+# sachant que pour chaque element <xi> du bloc, sa probabilité d'avoir un <1> est <P[xi=<1>] = alpha.i = 1/(2i+1)>.
+
 import itertools
 from fractions import Fraction
 from decimal import Decimal
 
 #Génere une liste de toutes les permutations uniques de la liste en entrée.
+#
 # ex: si <t=[1,0,0]> la fonction retourne la liste: <[[1,0,0],[0,1,0],[0,0,1]]>
 def unique_permutations(t):
     lt = list(t)
@@ -21,6 +25,7 @@ def unique_permutations(t):
         lt.append(d)
 
 #Génere une liste de toutes les possibilitées pour <n=x> d'avoir un nombre impaire de <1> dans <x> "cases".
+#
 # On génere, à chaque nombre impaire entre <i=1> et <i=x>, une liste de <x> "cases" 
 #   qui contiend <i> cases avec des <1> et le reste <x-i> cases avec des <0>.
 #   Puis on donne cette liste à "unique_permutations()" qui nous retourne toutes les permutations uniques de la dite liste.
@@ -97,11 +102,8 @@ n6 = list(unique_permutations([1,0,0,0,0,0]))+list(unique_permutations([1,1,1,0,
 #print("n6:"+str(len(n6)))
 
 n7 = list(unique_permutations([1,0,0,0,0,0,0]))+list(unique_permutations([1,1,1,0,0,0,0]))+list(unique_permutations([1,1,1,1,1,0,0]))+list(unique_permutations([1,1,1,1,1,1,1]))
-
 n8 = list(unique_permutations([1,0,0,0,0,0,0,0]))+list(unique_permutations([1,1,1,0,0,0,0,0]))+list(unique_permutations([1,1,1,1,1,0,0,0]))+list(unique_permutations([1,1,1,1,1,1,1,0]))
-
 n9 = list(unique_permutations([1,0,0,0,0,0,0,0,0]))+list(unique_permutations([1,1,1,0,0,0,0,0,0]))+list(unique_permutations([1,1,1,1,1,0,0,0,0]))+list(unique_permutations([1,1,1,1,1,1,1,0,0]))+list(unique_permutations([1,1,1,1,1,1,1,1,1]))
-
 print("--")
 calculateProb(n1)
 calculateProb(n2)
@@ -112,8 +114,8 @@ calculateProb(n6)
 calculateProb(n7)
 calculateProb(n8)
 calculateProb(n9)
-
 print("******")
+
 #Tests avec les datasets automatic, de <n=1> à <n=x>, soit <n=30> dans la boucle suivante.
 #
 #Attention, l'algorithme prend exponentiellement plus de ressources plus <n> augmente, 
